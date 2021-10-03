@@ -2,6 +2,7 @@ import { BrowserWindow } from "electron";
 import config from "../common/config.js";
 import * as path from "path";
 import initServer from "../common/server.js";
+import initwsServer from "../common/wss.js"
 
 // global reference to mainWindow (necessary to prevent window from being garbage collected)
 let mainWindow;
@@ -47,6 +48,8 @@ function createMainWindow(isDevelopment) {
 
   // 启动服务器
   initServer((channel, ...args) => window.webContents.send(channel, ...args));
+	
+	initwsServer((channel, ...args) => window.webContents.send(channel, ...args));
 
   mainWindow = window;
 }
