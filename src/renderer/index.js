@@ -11,6 +11,12 @@ window.addEventListener("load", () => {
   const app = document.getElementById("app");
   app.style.height = "100%";
 
+  ipcRenderer.on("init", (event, config) => {
+    logger.info("init", config);
+    logger.info(config.danmaku.opacity.toString());
+    app.style.opacity = config.danmaku.opacity.toString();
+  });
+
   const danmaku = new CustomDanmaku(app);
 
   danmaku.init();
