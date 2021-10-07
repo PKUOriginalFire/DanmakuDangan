@@ -9,6 +9,10 @@ let config = {
     port: 3000,
     host: "localhost",
   },
+	ws: {
+    port: 3456,
+    host: "localhost",
+	},
   debug: false,
   log: {
     console: {
