@@ -59,7 +59,7 @@ margin: # 边距，单位 %
   bottom: 0
 danmaku: # 弹幕配置
   speed: 144 # 弹幕速度，默认值144
-  opacity: 0.4 # 弹幕透明度
+  opacity: 0.8 # 弹幕透明度
   defaultSize: 25 # 默认字号，单位像素
   defaultColor: "#fff" # 默认颜色
 ```
