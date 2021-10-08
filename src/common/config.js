@@ -4,6 +4,23 @@ import * as path from "path";
 import YAML from "yaml";
 import * as logger from "electron-log";
 
+function assiginObj(target = {}, sources = {}) {
+  let obj = target;
+  if (typeof target != "object" || typeof sources != "object") {
+    return sources; // 如果其中一个不是对象 就返回sources
+  }
+  for (let key in sources) {
+    // 如果target也存在 那就再次合并
+    if (target.hasOwnProperty(key)) {
+      obj[key] = assiginObj(target[key], sources[key]);
+    } else {
+      // 不存在就直接添加
+      obj[key] = sources[key];
+    }
+  }
+  return obj;
+}
+
 let config = {
   server: {
     port: 3000,
@@ -24,7 +41,14 @@ let config = {
       format: "[{h}:{i}:{s}.{ms}] [{level}] {text}",
     },
   },
+  margin: { // 单位 %
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+  },
   danmaku: {
+    speed: 144,
     opacity: 0.8,
     defaultSize: 25,
     defaultColor: "#fff",
@@ -36,7 +60,8 @@ try {
     "utf8"
   );
 
-  config = YAML.parse(data);
+  const new_config = YAML.parse(data);
+  assiginObj(config, new_config);
   // 日志输出设置
   logger.transports.console.level = config.log.console.level;
   logger.transports.console.format = config.log.console.format;

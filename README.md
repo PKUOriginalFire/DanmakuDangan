@@ -52,7 +52,14 @@ log: # 日志配置
   file: # 日志文件
     level: info
     format: "[{h}:{i}:{s}.{ms}] [{level}] {text}"
+margin: # 边距，单位 %
+  left: 0 # 由于某种神秘力量的影响，left 和 right 好像并不起作用
+  right: 0
+  top: 0
+  bottom: 0
 danmaku: # 弹幕配置
+  speed: 144 # 弹幕速度，默认值144
+  opacity: 0.4 # 弹幕透明度
   defaultSize: 25 # 默认字号，单位像素
   defaultColor: "#fff" # 默认颜色
 ```

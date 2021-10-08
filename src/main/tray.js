@@ -37,6 +37,14 @@ app.whenReady().then(() => {
       type: "normal",
       click: () => mainWindow.webContents.send("about"),
     },
+    {
+      label: "重启",
+      type: "normal",
+      click: () => {
+        app.relaunch();
+        app.quit();
+      },
+    },
     { label: "退出", type: "normal", role: "quit" },
   ]);
   tray.setToolTip("元火弹幕姬");

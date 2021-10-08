@@ -9,12 +9,24 @@ document.head.appendChild(styles);
 
 window.addEventListener("load", () => {
   const app = document.getElementById("app");
-  app.style.height = "100%";
+  app.style.position = "fixed";
+  app.style.top = "0";
+  app.style.left = "0";
+  app.style.right = "0";
+  app.style.bottom = "0";
+  app.style.overflow = "hidden";
+
 
   ipcRenderer.on("init", (event, config) => {
     logger.info("init", config);
-    logger.info(config.danmaku.opacity.toString());
     app.style.opacity = config.danmaku.opacity.toString();
+    app.style.left = config.margin.left + "%";
+    app.style.light = config.margin.right + "%";
+    app.style.top = config.margin.top + "%";
+    app.style.bottom = config.margin.bottom + "%";
+
+    danmaku.setSpeed(config.danmaku.speed);
+    danmaku.resize();
   });
 
   const danmaku = new CustomDanmaku(app);

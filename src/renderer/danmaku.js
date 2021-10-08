@@ -33,6 +33,14 @@ class CustomDanmaku {
   hide() {
     this.app.style.marginTop = "100%";
   }
+
+  resize() {
+    this.danmaku.resize();
+  }
+
+  setSpeed(speed) {
+    this.danmaku.speed = speed;
+  }
 }
 
 export default CustomDanmaku;
