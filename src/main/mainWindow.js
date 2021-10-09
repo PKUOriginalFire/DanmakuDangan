@@ -14,7 +14,7 @@ function createMainWindow(isDevelopment) {
     frame: false,
     fullscreen: true,
     simpleFullscreen: true,
-    alwaysOnTop: !config.debug,
+    focusable: config.debug,
     skipTaskbar: true, // 全屏透明
     webPreferences: {
       devTools: config.debug,
@@ -35,8 +35,17 @@ function createMainWindow(isDevelopment) {
 
   window.setIgnoreMouseEvents(!config.debug);
 
+  let timer;
+  if (!config.debug) {
+    window.setAlwaysOnTop(true, "screen-saver"); // 到置顶最高等级
+    timer = setInterval(() => {
+      window.moveTop(); // 强行置顶
+    }, 1000);
+  }
+
   window.on("closed", () => {
     mainWindow = null;
+    if (timer) clearInterval(timer);
   });
 
   window.webContents.on("devtools-opened", () => {
