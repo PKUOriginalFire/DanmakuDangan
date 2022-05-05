@@ -1,4 +1,7 @@
 {
     "editor.tabSize": 2,
-		"editor.insertSpaces": true
+    "editor.insertSpaces": true,
+    "yaml.schemas": {
+      "https://json.schemastore.org/github-workflow.json": "file:///e%3A/electron/DanmakuDangan/.github/workflows/build.yml"
+    }
 }
