@@ -1,0 +1,40 @@
+appId: com.originalfire.danmakudangan
+productName: 元火弹幕姬
+directories:
+  buildResources: build
+files:
+  - '!node_modules/**/*'
+  - 'out/**/*'
+  - 'public/**/*'
+win:
+  executableName: 元火弹幕姬
+  icon: 'public/logo.png'
+nsis:
+  artifactName: ${name}-${version}-setup.${ext}
+  oneClick: false
+  allowElevation: true
+  allowToChangeInstallationDirectory: true
+  perMachine: true
+  shortcutName: ${productName}
+  uninstallDisplayName: ${productName}
+  createDesktopShortcut: always
+mac:
+  icon: 'public/logo.png'
+  extendInfo:
+    - NSCameraUsageDescription: Application requests access to the device's camera.
+    - NSMicrophoneUsageDescription: Application requests access to the device's microphone.
+    - NSDocumentsFolderUsageDescription: Application requests access to the user's Documents folder.
+    - NSDownloadsFolderUsageDescription: Application requests access to the user's Downloads folder.
+dmg:
+  artifactName: ${name}-${version}.${ext}
+linux:
+  executableName: 元火弹幕姬
+  icon: 'public/logo.png'
+  target:
+    - AppImage
+    - snap
+    - deb
+  category: Utility
+appImage:
+  artifactName: ${name}-${version}.${ext}
+npmRebuild: false

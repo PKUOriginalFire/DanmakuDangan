@@ -6,16 +6,9 @@
   
 ## 使用方法
 
-启动后，会在本地的指定端口开启 HTTP 和 websocket 服务，接收来自客户端的弹幕数据。
+启动后，会在本地的指定端口开启 websocket 服务，接收来自客户端的弹幕数据（`json` 格式）。
 
-可以通过 GET 或 POST 方法发送弹幕：
-
-```
-[GET] http://localhost:3000/?text=弹幕测试&size=25&color=rgb(255,0,0)
-```
-
-```
-[POST] http://localhost:3000
+```json
 {
   "text": "弹幕测试",
   "size": 25,
@@ -23,25 +16,20 @@
 }
 ```
 
-也可以通过 websocket 协议发送弹幕（json格式）。
-
 `text` 为弹幕内容，`size` 为字号（可选，单位像素），`color` 为弹幕颜色（可选，按照 css 的颜色格式）。
 
 可以通过托盘区图标控制弹幕姬，如设置弹幕是否显示、打开配置文件、退出弹幕姬等。
 
 ## 配置文件
 
-弹幕姬启动后，会在本地生成一个配置文件，在 Windows 系统下，此文件位于 `%APPDATA%\Roaming\danmaku-dangan\config.yaml`。
+弹幕姬启动后，会在本地生成一个配置文件，在 Windows 系统下，此文件位于 `%APPDATA%\Roaming\danmaku-dangan-nodejs\Config\config.yaml`。
 
 如果记不住这个路径，可以在托盘图标的右键菜单中，点击“打开配置文件”，找到配置文件的位置。
 
 默认配置如下：
 
 ```yaml
-server: # 弹幕服务器配置(http)
-  port: 3000 # 端口
-  host: localhost # 主机
-ws: # websocket服务器配置
+server: # 服务器配置
   port: 3456 # 端口
   host: localhost # 主机
 debug: false # 是否开启调试模式
@@ -52,11 +40,11 @@ log: # 日志配置
   file: # 日志文件
     level: info
     format: "[{h}:{i}:{s}.{ms}] [{level}] {text}"
-margin: # 边距，单位 %
-  left: 0 # 由于某种神秘力量的影响，left 和 right 好像并不起作用
-  right: 0
-  top: 0
-  bottom: 0
+margin: # 边距
+  left: '0'
+  right: '0'
+  top: '0'
+  bottom: '0'
 danmaku: # 弹幕配置
   speed: 144 # 弹幕速度，默认值144
   opacity: 0.8 # 弹幕透明度
@@ -72,4 +60,4 @@ danmaku: # 弹幕配置
 
 ## 开源协议
 
-本项目以 GNU Lesser General Public License 3.0 开源。
+本项目以 GNU General Public License 3.0 开源。
