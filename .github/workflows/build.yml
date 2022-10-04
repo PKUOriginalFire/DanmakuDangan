@@ -41,20 +41,3 @@ jobs:
             dist/*.exe
             dist/*.dmg
             dist/*.deb
-
-  release:
-    name: Release
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/download-artifact@3
-        with:
-          name: ${{ matrix.os }}-${{ matrix.node-version }}
-          path: dist
-
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: |
-            dist/*.exe
-            dist/*.dmg
-            dist/*.deb
