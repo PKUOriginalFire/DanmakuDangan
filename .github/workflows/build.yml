@@ -2,8 +2,8 @@ name: Build & Release
 
 on:
   push:
-    branches: ['main', 'master']
-  workflow_dispatch:
+    tags:
+      - 'v*.*.*'
 
 jobs:
   build:
@@ -38,6 +38,14 @@ jobs:
         with:
           name: ${{ matrix.os }}-${{ matrix.node-version }}
           path: |
+            dist/*.exe
+            dist/*.dmg
+            dist/*.deb
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
             dist/*.exe
             dist/*.dmg
             dist/*.deb
