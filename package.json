@@ -14,7 +14,7 @@
     "lint": "eslint --fix",
     "dev": "node scripts/watch.mjs",
     "prebuild": "node scripts/build.mjs",
-    "build": "npm run prebuild && electron-builder"
+    "build": "npm run prebuild && electron-builder --publish=never"
   },
   "dependencies": {
     "@electron-toolkit/utils": "^1.0.2",
